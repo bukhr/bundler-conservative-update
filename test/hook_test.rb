@@ -73,6 +73,36 @@ class HookTest < Minitest::Test
     refute_predicate hook, :should_inject?
   end
 
+  def test_does_not_inject_when_disabled_with_1
+    hook = Hook.new(
+      argv:   ["update", "rails"],
+      env:    { BundlerConservativeUpdate::DISABLE_ENV => "1" },
+      unlock: { gems: ["rails"] },
+    )
+
+    refute_predicate hook, :should_inject?
+  end
+
+  def test_does_not_inject_when_disabled_with_true
+    hook = Hook.new(
+      argv:   ["update", "rails"],
+      env:    { BundlerConservativeUpdate::DISABLE_ENV => "true" },
+      unlock: { gems: ["rails"] },
+    )
+
+    refute_predicate hook, :should_inject?
+  end
+
+  def test_injects_when_disable_is_set_to_a_falsy_value
+    hook = Hook.new(
+      argv:   ["update", "rails"],
+      env:    { BundlerConservativeUpdate::DISABLE_ENV => "0" },
+      unlock: { gems: ["rails"] },
+    )
+
+    assert_predicate hook, :should_inject?
+  end
+
   def test_conservative_argv_inserts_after_update
     hook = Hook.new(argv: ["update", "rails"], env: {}, unlock: {})
 

@@ -13,7 +13,8 @@ Bundler::Plugin.add_hook("before-install-all") do |_dependencies|
   next unless hook.should_inject?
 
   Bundler.ui.info("bundler-conservative-update: applying --conservative (only the requested gems are updated; transitive dependencies stay locked)")
-  Bundler.ui.info("  Pass --patch, --minor or --major explicitly to choose a different update strategy.")
+  Bundler.ui.info("  Pass --patch, --minor or --major to choose a different update strategy, or set")
+  Bundler.ui.info("  BUNDLER_CONSERVATIVE_UPDATE_DISABLE=1 to run an unrestricted update on purpose.")
 
   ENV[BundlerConservativeUpdate::APPLIED_ENV] = "1"
   bundle_bin = Gem.loaded_specs["bundler"].bin_file("bundle")
