@@ -6,9 +6,10 @@ Gem::Specification.new do |spec|
   spec.name    = "bundler-conservative-update"
   spec.version = BundlerConservativeUpdate::VERSION
   spec.summary = "A Bundler plugin that makes `bundle update` conservative by default"
-  spec.description = "Re-executes every plain `bundle update` with --conservative, so only the gems " \
-                     "you name are updated and transitive dependencies stay locked. Explicit " \
-                     "strategies (--patch, --minor, --major) and an opt-out are respected."
+  spec.description = "Re-executes `bundle update` with --conservative, so only the gems you name " \
+                     "are updated and transitive dependencies stay locked. Explicit strategies " \
+                     "(--patch, --minor, --major, --strict), explicit scopes (--all, --source, " \
+                     "--bundler, --ruby) and an opt-out are respected."
   spec.authors = ["Buk"]
   spec.email   = ["contacto@buk.cl"]
   spec.license = "MIT"
