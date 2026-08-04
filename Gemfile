@@ -2,7 +2,5 @@
 
 source "https://rubygems.org"
 
+# Development dependencies are declared in the gemspec.
 gemspec
-
-gem "minitest"
-gem "rake"
